@@ -1,7 +1,21 @@
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 const FoodSlider = () => {
+  const [cardData, setCardData] = useState();
+  async function getImgCard() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    setCardData(json.data.cards[0].card.card.imageGridCards.info);
+  }
+  useEffect(() => {
+    getImgCard;
+    getImgCard();
+  }, []);
+
   return (
     <div className='border-b-2 pb-14'>
       <div className='flex justify-between font-bold px-5'>
@@ -26,26 +40,13 @@ const FoodSlider = () => {
         </div>
       </div>
       <div className='flex overflow-x-auto scrollbar-none slider scroll-smooth'>
-        <EachImg />
+        <EachImg cardData={cardData} />
       </div>
     </div>
   );
 };
 
-const EachImg = () => {
-  const [cardData, setCardData] = useState();
-  async function getImgCard() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    setCardData(json.data.cards[0].card.card.imageGridCards.info);
-  }
-  useEffect(() => {
-    getImgCard;
-    getImgCard();
-  }, []);
-
+const EachImg = ({ cardData }) => {
   return cardData ? (
     <>
       {cardData.map((data, index) => {
@@ -57,13 +58,12 @@ const EachImg = () => {
               "https://media-assets.swiggy.com/swiggy/image/upload/" +
               data.imageId
             }
-            alt=''
           />
         );
       })}
     </>
   ) : (
-    <h1>Waiting for the data</h1>
+    <Shimmer />
   );
 };
 

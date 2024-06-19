@@ -82,7 +82,7 @@ const Restaurants = () => {
                   <div className='absolute top-[50%] bottom-0 left-0 right-0 bg-gradient-to-t from-[#1b1e24] to-transparent rounded-b-3xl'></div>
                 </div>
                 <div className='pl-5'>
-                  <div className='font-bold text-[1.3rem] text-[#414449]'>
+                  <div className='font-bold text-[1.3rem] text-[#414449] w-max overflow-ellipsis overflow-hidden'>
                     {res.info.name}
                   </div>
                   <div className='flex items-center text-[1.2rem] font-bold text-[#414449]'>
