@@ -17,16 +17,17 @@ const FoodSlider = () => {
   }, []);
 
   return (
-    <div className='border-b-2 pb-14'>
-      <div className='flex justify-between font-bold px-5'>
-        <h2 className='text-3xl text-[#161a1f]'>What's on your mind?</h2>
-        <div className='flex items-center gap-2 '>
+    <div className="border-b-2 pb-14">
+      <div className="flex justify-between font-bold px-5">
+        <h2 className="text-3xl text-[#161a1f]">What's on your mind?</h2>
+        <div className="flex items-center gap-2 ">
           <button
             onClick={() => {
               document.querySelector(".slider").scrollLeft -= 500;
             }}
-            className='bg-slate-300 rounded-full w-10 h-10 flex items-center justify-center'>
-            <BsArrowLeft className='scale-125' />
+            className="bg-slate-300 rounded-full w-10 h-10 flex items-center justify-center"
+          >
+            <BsArrowLeft className="scale-125" />
           </button>
           <button
             onClick={() => {
@@ -34,12 +35,13 @@ const FoodSlider = () => {
             }}
             className={
               "rounded-full w-10 h-10 flex items-center justify-center bg-slate-300"
-            }>
-            <BsArrowRight className='scale-125' />
+            }
+          >
+            <BsArrowRight className="scale-125" />
           </button>
         </div>
       </div>
-      <div className='flex overflow-x-auto scrollbar-none slider scroll-smooth'>
+      <div className="flex overflow-x-auto scrollbar-none slider scroll-smooth">
         <EachImg cardData={cardData} />
       </div>
     </div>
@@ -53,7 +55,7 @@ const EachImg = ({ cardData }) => {
         return (
           <img
             key={index}
-            className='min-w-48 cursor-pointer'
+            className="min-w-32 cursor-pointer"
             src={
               "https://media-assets.swiggy.com/swiggy/image/upload/" +
               data.imageId
